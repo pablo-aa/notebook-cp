@@ -13,6 +13,6 @@
 - Para criação do pdf, execute:
 
 ```bash
-  cd generateLatex && python3 createLatex.py && cd ..
+  cd generate_latex && python3 create_latex.py && cd ..
 ```
 ** Execução para MacOS, adicionar comandos para outros OS
