@@ -1,5 +1,3 @@
-using ll = long long;
-
 const string digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 ll tobase10(string number, int base) {
