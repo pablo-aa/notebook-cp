@@ -21,6 +21,16 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+
+      - name: Download artifact notebook.pdf
+        uses: actions/download-artifact@v3
+        with:
+          name: notebook.pdf
+      
+      - name: Display structure of downloaded files
+        run: ls -R
+
       - name: Create GitHub release
         id: create-new-release
         uses: actions/create-release@v1
