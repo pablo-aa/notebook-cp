@@ -1,6 +1,7 @@
 name: Generate PDF of Notebook and Theoretical
 run-name: Generating PDF of Notebook and Theoretical
 on: [push]
+
 jobs:
   generate-pdfs:
     permissions: write-all
@@ -10,18 +11,10 @@ jobs:
         run: sudo apt install texlive texinfo texlive-fonts-recommended texlive-latex-extra
 
       - name: checkout repository content
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: generating theoretical pdf
         run: python generate_latex/generate_theoretical.py
-      
-      - uses: actions/checkout@v3
-
-      - name: outros
-        run: ls
-
-      - name: Display structure of downloaded files
-        run: ls -R
 
       - name: Upload theoretical.pdf
         uses: actions/upload-artifact@v3
