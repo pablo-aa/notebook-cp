@@ -5,14 +5,11 @@ jobs:
   generate-theoretical:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content
+      - name: checkout repository content
+        uses: actions/checkout@v2
 
       - name: install latex packages
         run: sudo apt install texlive texinfo texlive-fonts-recommended texlive-latex-extra
-
-      - name: debug
-        run: pdflatex -interaction=nonstopmode -halt-on-error generate_latex/theoretical.tex
 
       - name: generating theoretical pdf
         run: python generate_latex/generate_theoretical.py

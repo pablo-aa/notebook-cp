@@ -16,7 +16,7 @@ def cpy_template():
 
 def get_blocked():
     blocked = set()
-    with open("./block_from_notebook.txt") as f:
+    with open("generate_latex/block_from_notebook.txt") as f:
         for line in f:
             # Remove comments
             line = line.split('#')[0]
@@ -39,14 +39,14 @@ def remove_aux():
             os.remove(item)
 
 def move_output():
-  if os.path.exists('../notebook.pdf'):
-    os.remove('../notebook.pdf')
+  if os.path.exists('/notebook.pdf'):
+    os.remove('/notebook.pdf')
 
-  if os.path.exists('./notebook.pdf'):
-    shutil.move('./notebook.pdf', '../')
+  if os.path.exists('generate_latex/notebook.pdf'):
+    shutil.move('generate_latex/notebook.pdf', '/')
 
 def get_dir():
-    path = '../code'
+    path = 'code'
     section_list = os.listdir(path)
     section = []
     for section_name in section_list:
@@ -69,9 +69,9 @@ def get_dir():
 
 
 def create_notebook(section, blocked):
-    path = '../code'
+    path = 'code'
     aux = ''
-    with open('notebook.tex', 'a') as texfile:
+    with open('generate_latex/notebook.tex', 'a') as texfile:
 
         for (item, subsection) in section:
             aux += '\\section{%s}\n' % get_item_name(item)
@@ -98,7 +98,7 @@ def main():
     create_notebook(section, blocked)
 
     cmd = ['pdflatex', '-interaction=nonstopmode', '-halt-on-error',
-           'notebook.tex']
+           'generate_latex/notebook.tex']
     with open(os.devnull, 'w') as DEVNULL:
         try:
             subprocess.check_call(cmd, stdout=DEVNULL)
@@ -106,7 +106,7 @@ def main():
         except Exception:
             print("Erro na transformação de LaTex para pdf.")
             print("Execute manualmente para entender o erro:")
-            print('pdflatex -interaction=nonstopmode -halt-on-error notebook.tex')
+            print('pdflatex -interaction=nonstopmode -halt-on-error generate_latex/notebook.tex')
             exit(1)
 
     remove_aux()

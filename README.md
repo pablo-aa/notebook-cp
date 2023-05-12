@@ -1,18 +1,43 @@
 <img width="300px" src="https://img.ifunny.co/images/33158e52fd19695bb1bfc98f4710f5a630000275d8cfb7ec3533f0a3f3c97294_1.webp"/>
 
-# Notebook prog. competitiva
+# Competitive Programming
 
-## Configuração de ambiente
+Repository with algorithms and formulas used in competitive programming.
 
-- Instale o [Python](https://www.python.org/downloads/)
-- Instale o [LaTeX](https://www.latex-project.org/get/) (pode ser a versão reduzida)
+Summary
+------------
 
-## Uso
+- [Algorithms](Content/Algorithms/)
+- [Data Structures](Content/Data%20Structures/)
+- [DP](Content/DP/)
+- [Geometry](Content/Geometry/)
+- [Graphs](Content/Graphs/)
+- [Math](Content/Math/)
+- [Misc](Content/Misc)
+- [Strings](Content/Strings/)
+- [Template](Content/Template/)
 
-- Crie seus códigos dentro da pasta code/{temaDoCódigo}/
-- Para criação do pdf, execute:
+Generating notebook
+----------------------
+
+Requirements: [Python 3](https://www.python.org/), [pdflatex](http://pdftex.org)
 
 ```bash
-  cd generate_latex && python3 create_latex.py && cd ..
+sudo apt install python3
 ```
-** Execução para MacOS, adicionar comandos para outros OS
+
+```bash
+sudo apt install texlive texinfo texlive-fonts-recommended texlive-latex-extra
+```
+
+Command:
+
+```bash
+python3 generate_latex/generate_notebook.py
+```
+
+```bash
+python3 generate_latex/generate_theoretical.py
+```
+
+_Thanks to [TiagoDFS](https://github.com/Tiagosf00/Competitive-Programming)_
