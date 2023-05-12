@@ -2,61 +2,48 @@ name: Generate PDF of Notebook and Theoretical
 run-name: Generating PDF of Notebook and Theoretical
 on: [push]
 jobs:
-  # install-latex-packages:
+  # generate-pdfs:
+  #   # needs: install-latex-packages
+  #   permissions: write-all
   #   runs-on: ubuntu-latest
   #   steps:
   #     - name: install latex packages
   #       run: sudo apt install texlive texinfo texlive-fonts-recommended texlive-latex-extra
 
-  # generate-notebook-pdf:
-  #   needs: install-latex-packages
-  #   runs-on: ubuntu-latest
-  #   steps:
   #     - name: checkout repository content
   #       uses: actions/checkout@v2
 
-  #     - name: generating notebook pdf
-  #       run: python generate_latex/generate_notebook.py
-
-  generate-theoretical-pdf:
-    # needs: install-latex-packages
-    permissions: write-all
-    runs-on: ubuntu-latest
-    steps:
-      - name: install latex packages
-        run: sudo apt install texlive texinfo texlive-fonts-recommended texlive-latex-extra
-
-      - name: checkout repository content
-        uses: actions/checkout@v2
-
-      - name: generating theoretical pdf
-        run: python generate_latex/generate_theoretical.py
+  #     - name: generating theoretical pdf
+  #       run: python generate_latex/generate_theoretical.py
       
-      - uses: actions/checkout@v3
+  #     - uses: actions/checkout@v3
 
-      - name: outros
-        run: ls
+  #     - name: outros
+  #       run: ls
 
-      - name: Display structure of downloaded files
-        run: ls -R
+  #     - name: Display structure of downloaded files
+  #       run: ls -R
 
-      - name: Upload theoretical.pdf
-        uses: actions/upload-artifact@v3
-        with:
-          name: theoretical.pdf
-          path: ./theoretical.pdf
+  #     - name: Upload theoretical.pdf
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: theoretical.pdf
+  #         path: ./theoretical.pdf
       
-      - name: Display structure of downloaded files
-        run: ls -R
+  #     - name: Display structure of downloaded files
+  #       run: ls -R
 
   release-project:
-    needs: [generate-theoretical-pdf]
+    # needs: generate-pdfs
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read  # This is required for actions/checkout
       
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Download artifact theoretical.pdf
         uses: actions/download-artifact@v3
         with:
@@ -74,14 +61,14 @@ jobs:
           tag_name: tag-${{ github.ref }}
           release_name: Release ${{ github.ref }}
       
-      - name: Upload Release Asset (theoretical.pdf)
+      - name: Upload Release Asset (notebook.pdf)
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-          asset_path: ./theoretical.pdf
-          asset_name: theoretical.pdf
+          asset_path: ./notebook.pdf
+          asset_name: notebook.pdf
           asset_content_type: application/pdf
       
       - name: Upload Release Asset (theoretical.pdf)
