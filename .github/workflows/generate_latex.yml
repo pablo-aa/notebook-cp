@@ -2,7 +2,7 @@ name: Generate PDF of Notebook and Theoretical
 run-name: Generating PDF of Notebook and Theoretical
 on: [push]
 jobs:
-  generate-theoretical:
+  generate-pdfs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository content
@@ -11,8 +11,39 @@ jobs:
       - name: install latex packages
         run: sudo apt install texlive texinfo texlive-fonts-recommended texlive-latex-extra
 
+      - name: generating notebook pdf
+        run: python generate_latex/generate_notebook.py
+
       - name: generating theoretical pdf
         run: python generate_latex/generate_theoretical.py
 
-      - name: generating notebook pdf
-        run: python generate_latex/generate_notebook.py
+  release-project:
+    steps:
+      - name: Create GitHub release
+        id: create-new-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+      
+      - name: Upload Release Asset (notebook.pdf)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ./notebook.pdf
+          asset_name: notebook.pdf
+          asset_content_type: application/pdf
+      
+      - name: Upload Release Asset (theoretical.pdf)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ./theoretical.pdf
+          asset_name: theoretical.pdf
+          asset_content_type: application/pdf
