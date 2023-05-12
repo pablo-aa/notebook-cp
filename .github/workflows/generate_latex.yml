@@ -31,6 +31,11 @@ jobs:
           name: notebook.pdf
           path: ./notebook.pdf
       
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
       - name: stage changed files
         run: git add .
       
