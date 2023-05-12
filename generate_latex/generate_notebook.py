@@ -11,7 +11,7 @@ def get_item_name(item):
   return item.capitalize()
 
 def cpy_template():
-    shutil.copyfile('./template_notebook.tex', './notebook.tex')
+    shutil.copyfile('generate_latex/template_notebook.tex', 'generate_latex/notebook.tex')
 
 
 def get_blocked():
