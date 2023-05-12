@@ -35,6 +35,7 @@ jobs:
 
   release-project:
     # needs: generate-pdfs
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: "testando"
