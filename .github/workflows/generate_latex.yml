@@ -19,7 +19,7 @@ jobs:
   #       run: python generate_latex/generate_notebook.py
 
   generate-theoretical-pdf:
-    needs: install-latex-packages
+    # needs: install-latex-packages
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
