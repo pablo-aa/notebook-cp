@@ -13,6 +13,9 @@ jobs:
       - name: checkout repository content
         uses: actions/checkout@v3
 
+      - name: generating notebook pdf
+        run: python generate_latex/generate_notebook.py
+
       - name: generating theoretical pdf
         run: python generate_latex/generate_theoretical.py
 
