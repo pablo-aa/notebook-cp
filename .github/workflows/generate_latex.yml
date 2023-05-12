@@ -7,16 +7,12 @@ jobs:
     steps:
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content
-      
-      - name: cd generate_latex
-        run: cd generate_latex
-      
+
       #- name: install latex packages
       #  run: sudo apt install texlive texinfo texlive-fonts-recommended texlive-latex-extra
 
-      - name: generating notebook pdf
-        run: python generate_latex/generate_notebook.py
-
       - name: generating theoretical pdf
         run: python generate_latex/generate_theoretical.py
-  
+
+      - name: generating notebook pdf
+        run: python generate_latex/generate_notebook.py
