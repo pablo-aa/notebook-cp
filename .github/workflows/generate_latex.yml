@@ -45,11 +45,6 @@ jobs:
         with:
           name: theoretical.pdf
           path: ./theoretical.pdf
-
-      # - name: Download artifact theoretical.pdf
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: theoretical.pdf
       
       - name: Display structure of downloaded files
         run: ls -R
@@ -59,6 +54,11 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - name: Download artifact theoretical.pdf
+        uses: actions/download-artifact@v3
+        with:
+          name: theoretical.pdf
+      
       - name: Display structure of downloaded files
         run: ls -R
 
