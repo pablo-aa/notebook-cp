@@ -29,8 +29,11 @@ jobs:
           name: theoretical.pdf
           path: ./theoretical.pdf
       
-      - name: Display structure of downloaded files
-        run: ls -R
+      - name: Upload notebook.pdf
+        uses: actions/upload-artifact@v3
+        with:
+          name: notebook.pdf
+          path: ./notebook.pdf
 
   release-project:
     needs: generate-pdfs
