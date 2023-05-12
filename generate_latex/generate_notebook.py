@@ -11,12 +11,12 @@ def get_item_name(item):
   return item.capitalize()
 
 def cpy_template():
-    shutil.copyfile('template_notebook.tex', 'notebook.tex')
+    shutil.copyfile('./template_notebook.tex', './notebook.tex')
 
 
 def get_blocked():
     blocked = set()
-    with open("block_from_notebook.txt") as f:
+    with open("./block_from_notebook.txt") as f:
         for line in f:
             # Remove comments
             line = line.split('#')[0]
