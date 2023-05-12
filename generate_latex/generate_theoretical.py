@@ -7,9 +7,9 @@ import shutil
 from functools import cmp_to_key
 
 def compare(x, y):
-    if x == 'general':
+    if x == 'general.tex':
         return -1
-    if y == 'general':
+    if y == 'general.tex':
         return 1
     
     if x < y:
@@ -18,11 +18,11 @@ def compare(x, y):
         return -1
 
 def cpy_template():
-    shutil.copyfile('template_theoretical.tex', 'theoretical.tex')
+    shutil.copyfile('generate_latex/template_theoretical.tex', 'generate_latex/theoretical.tex')
 
 def get_blocked():
     blocked = set()
-    with open("block_from_theoretical.txt") as f:
+    with open("generate_latex/block_from_theoretical.txt") as f:
         for line in f:
             # Remove comments
             line = line.split('#')[0]
@@ -45,14 +45,14 @@ def remove_aux():
             os.remove(item)
 
 def move_output():
-  if os.path.exists('../theoretical.pdf'):
-    os.remove('../theoretical.pdf')
+  if os.path.exists('/theoretical.pdf'):
+    os.remove('/theoretical.pdf')
 
-  if os.path.exists('./theoretical.pdf'):
-    shutil.move('./theoretical.pdf', '../')
+  if os.path.exists('generate_latex/theoretical.pdf'):
+    shutil.move('generate_latex/theoretical.pdf', '/')
 
 def get_dir():
-    path = '../theoretical'
+    path = 'theoretical'
     section_list = os.listdir(path)
     section = []
     
@@ -81,9 +81,9 @@ def get_dir():
 
 def create_theoretical(section, blocked):
     cpy_template()
-    path = '../theoretical'
+    path = 'theoretical'
     aux = ''
-    with open('theoretical.tex', 'a') as texfile:
+    with open('generate_latex/theoretical.tex', 'a') as texfile:
 
         for (item, subsection) in section:
             aux += '\\section{%s}\n' % item
@@ -108,7 +108,7 @@ def main():
     create_theoretical(section, blocked)
 
     cmd = ['pdflatex', '-interaction=nonstopmode', '-halt-on-error', ''
-           'theoretical.tex']
+           'generate_latex/theoretical.tex']
     with open(os.devnull, 'w') as DEVNULL:
         try:
             subprocess.check_call(cmd, stdout=DEVNULL)
@@ -116,7 +116,7 @@ def main():
         except Exception:
             print("Erro na transformação de LaTex para pdf.")
             print("Execute manualmente para entender o erro:")
-            print('pdflatex -interaction=nonstopmode -halt-on-error theoretical.tex')
+            print('pdflatex -interaction=nonstopmode -halt-on-error generate_latex/theoretical.tex')
             remove_aux()
             exit(1)
 
