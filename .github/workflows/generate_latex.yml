@@ -5,6 +5,9 @@ jobs:
   generate-theoretical:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content
+      
       #- name: install latex packages
       #  run: sudo apt install texlive texinfo texlive-fonts-recommended texlive-latex-extra
 
