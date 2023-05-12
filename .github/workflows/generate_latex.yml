@@ -64,9 +64,9 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "${{ steps.date.outputs.date }}"
+          automatic_release_tag: "latest"
           prerelease: false
-          title: Release ${{ steps.date.outputs.date }}
+          title: Release ${{ github.ref }}
           files: |
             theoretical.pdf
             notebook.pdf
