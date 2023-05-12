@@ -1,0 +1,8 @@
+\subsection{Sum of digits of N written in base b}
+
+$$
+f(n, b) = \begin{cases}
+    n & n < b\\
+    f \left( n, \floor*{\dfrac{n}{b}} + (n \mod b) \right) & n \geq b \\
+\end{cases}
+$$
