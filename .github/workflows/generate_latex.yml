@@ -8,6 +8,9 @@ jobs:
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content
       
+      - name: cd generate_latex
+        run: cd generate_latex
+      
       #- name: install latex packages
       #  run: sudo apt install texlive texinfo texlive-fonts-recommended texlive-latex-extra
 
