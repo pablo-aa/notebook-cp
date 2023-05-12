@@ -41,17 +41,26 @@ jobs:
       
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Create GitHub release
-        id: create-new-release
-        uses: actions/create-release@v1
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v3
+      - name: Create a Release
+        uses: elgohr/Github-Release-Action@v4
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          tag_name: tag-${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          title: MyReleaseMessage
+      # - name: Checkout code
+      #   uses: actions/checkout@v2
+
+      # - name: Create GitHub release
+      #   id: create-new-release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: tag-${{ github.ref }}
+      #     release_name: Release ${{ github.ref }}
       
       # - name: Download artifact theoretical.pdf
       #   uses: actions/download-artifact@v3
