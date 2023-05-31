@@ -56,28 +56,40 @@ struct sat {
     void add_or(int a, int b) { // a or b
         add_impl(~a, b);
     }
+    
+    void add_nor(int a, int b) { // a nor b = !(a or b)
+        add_or(~a, b), add_or(a, ~b), add_or(~a, ~b);
+    }
 
     void add_and(int a, int b) { // a and b
         add_or(a, b), add_or(~a, b), add_or(a, ~b);
+    }
+    
+    void add_nand(int a, int b) { // a nand b = !(a and b)
+        add_or(~a, ~b);
     }
 
     void add_xor(int a, int b) { // a xor b = (a != b)
         add_or(a, b), add_or(~a, ~b);
     }
-
-    void add_eq(int a, int b) { // a = b
+    
+    void add_xnor(int a, int b) { // a xnor b = !(a xor b) = (a = b)
         add_xor(~a, b);
     }
 
     void add_true(int a) { // a = T
-        add_impl(~a, a);
+        add_or(a, ~a);
     }
-
+    
     void add_false(int a) { // a = F
-        add_impl(a, ~a);
+        add_and(a, ~a);
     }
 
     // magia - brunomaletta
+    void add_true_old(int a) { // a = T (n sei se funciona)
+        add_impl(~a, a);
+    }
+    
     void at_most_one(vector<int> v) { // no max um verdadeiro
         adj.resize(2*(tot+v.size()));
         for (int i = 0; i < v.size(); i++) {
