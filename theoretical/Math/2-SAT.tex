@@ -1,0 +1,17 @@
+\subsection{2-SAT}
+
+Check and finds solution for boolean formulas of the form:
+
+$$(a \lor b) \land (\neg a \lor c) \land (a \lor \neg b)$$
+
+As $a \lor b \iff \neg a \Rightarrow b \land \neg b \Rightarrow a$, we construct a directed graph of these implications. It's possible to construct any truth table of 1 or 2 variables with only and's from pairs of or's. \\
+\hfill \break
+$(a \lor b)$ turn of only the case $a=0, b=0$ \\
+$(a \lor \neg b)$ turn of only the case $a=0, b=1$ \\ 
+$(\neg a \lor b)$ turn of only the case $a=1, b=0$ \\
+$(\neg a \lor \neg b)$ turn of only the case $a=1, b=1$ \\
+\hfill \break
+Examples:
+
+$a \xor b = (a \lor b) \land (\neg a \lor \neg b)$ \\
+$a \land b = (a \lor b) \land (\neg a \lor b) \land (a \lor \neg b)$ \\
