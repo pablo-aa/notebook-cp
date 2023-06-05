@@ -1,4 +1,4 @@
-// Convex Hull - Graham scan
+// Convex Hull - Monotone Chain
 //
 // Convex Hull is the subset of points that forms the smallest convex polygon
 // which encloses all points in the set.
