@@ -1,0 +1,27 @@
+\subsection{Divisibility Criteria}
+
+\begin{table}[]
+  \begin{tabular}{ll}
+    2  & The last digit is even                                                                                                                                          \\
+    3  & The sum of the digits is divisible by 3                                                                                                                         \\
+    4  & The last 2 digits are divisible by 4                                                                                                                            \\
+    5  & The last digit is 0 or 5                                                                                                                                        \\
+    7  & Double the last digit and subtract it from a number made by the other digits. The result must be divisible by 7. (We can apply this rule to that answer again)  \\
+    8  & The last three digits are divisible by 8                                                                                                                        \\
+    9  & The sum of the digits is divisible by 9                                                                                                                         \\
+    11 & Add and subtract digits in an alternating pattern (add digit, subtract next digit, add next digit, etc). Then check if that answer is divisible by 11.          \\
+    13 & Multiply the last digit of N with 4 and add it to the rest truncate of the number. If the outcome is divisible by 13 then the number N is also divisible by 13.
+  \end{tabular}
+\end{table}
+
+\subsubsection{Other bases}
+
+Claim 1:
+
+The divisibility rule for a number $a$ to be divided by $n$ is as follows. Express the number $a$ in base $n+1$. Let $s$ denote the sum of digits of $a$ expressed in base $n+1$. Now $n|a \iff n|s$. More generally, $a \equiv s \pmod{n}$.
+
+Example:
+
+Before setting to prove this, we will see an example of this. Say we want to check if $13|611$. Express $611$ in base $14$.
+$$ 611 = 3 \times 14^2 + 1 \times 14^1 + 9 \times 14^0 = (319)_{14} $$
+where $(319)_{14}$ denotes that the decimal number $611$ expressed in base $14$. The sum of the digits $s = 3 + 1 + 9 = 13$. Clearly, $13|13$. Hence, $13|611$, which is indeed true since $611 = 13 \times 47$.
